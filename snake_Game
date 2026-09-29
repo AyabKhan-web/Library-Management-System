@@ -1,0 +1,50 @@
+# ✅ Exercise ➡➡➡➡➡ Snake Water Gun Game
+Game_characeters = {"snake", "Water", "Gun"}
+print("for snake enter 1", "for water enter 2", "for Gun enter 3")
+snake = 1
+Water = 2
+Gun = 3
+print("Your character")
+You = int(input("enter your input for character: "))
+if You == 1:
+    print("snake")
+elif You == 2:
+    print("Water")
+elif You == 3:
+    print("Gun")
+
+print("computer character")
+import random
+computer = random.randint(1,3)
+if computer == 1:
+    print("snake")
+elif computer == 2:
+    print("Water")
+elif computer == 3:
+    print("Gun")
+
+print("Winner player")
+if You == computer:
+    print("🤝Draw")
+elif You == 1 and computer == 2:
+    print("❌You Lose")
+elif You == 2 and computer == 3:
+    print("✅YOu Win")
+elif You == 3 and computer == 1:
+    print("❌You Lose")
+elif computer == 3 and You == 2:
+    print("✅computer Win")
+elif computer == 1 and You == 2:
+    print("✅ You Win")
+elif computer == 2 and You == 3:
+    print("✅ You Win")
+elif computer == 3 and You == 1:
+    print("✅computer Win")
+
+
+print("You",  You)
+print("computer", computer)
+
+import os
+os.rename('2.py', 'snake_Game')
+

@@ -1,0 +1,151 @@
+class Library:
+
+    def __init__ (self):
+        self.books_amount = 20
+        print("Books amount is: ", self.books_amount)
+        self.books_names = [
+        "Atomic Habits",
+        "Python",
+        "C++",
+        "Archeology",
+        "Psychology",
+        "C#",
+        "Java",
+        "Biology",
+        "Java script",
+        "Holy C",
+        "HTML",
+        "CSS",
+        "SQL",
+        "Django",
+        "Git",
+        "Linux",
+        "Computer Science",
+        "PHP",
+        "SQl",
+        "Maths",
+        "Physics"]
+
+
+        self.books_amount = len(self.books_names)
+        print("Now Books amount is: ", self.books_amount)
+        self.books_taken = []
+        self.books_returned = []
+        self.member_name = ""
+        self.taken_book = ""
+        self.days = 0
+
+    def add_book(self, book):
+        self.books_names.append(book)
+        self.books_amount = len(self.books_names)
+
+
+    def available_books(self):
+            print("Available books:")
+            for book in self.books_names:
+                print('->', book)
+
+
+    def set_member_name(self, name):
+            self.member_name = name
+            print(f"The name of Library member is {name}")
+
+    def set_books_taken(self, books_taken, books_taken_names):
+            self.books_taken = []
+            print(f"The books taken is: {books_taken}")
+
+            for book in books_taken_names:
+                book = book.title()
+                self.books_taken.append(book)
+                self.books_names.remove(book)
+                print(f"Remaining Books in Library {self.books_names}")
+                print("Book taken: ", '->',book)
+
+    def set_days(self, days):
+            self.days = days
+            print("The days taken is: ", days)
+
+    def set_books_returned(self, books_returned):
+            self.books_returned = []
+            for book in books_returned:
+                book = book.title()
+                if book in self.books_taken:
+                    self.books_taken.remove(book)
+                    self.books_names.append(book)
+                    print("Book returned: ", '->',book)
+                else:
+                    print(f"{book} book was not taken")
+a = Library()
+
+while True:
+        print("\n===== LIBRARY MANAGEMENT SYSTEM =====")
+        print("0. To add a new book to library")
+        print("1. Show available books")
+        print("2. save member's name")
+        print("3. which books member wanna borrowed")
+        print("4. show how much Days books borrowed")
+        print("5. Show books returned")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+
+
+        if choice == "0":
+            a.add_book("Ethical hacking")
+
+        elif choice == "1":
+            a.available_books()
+
+        elif choice == "2":
+            print("members information:")
+            member_name = input("Enter Library member name: ")
+            a.set_member_name(member_name)
+
+        elif choice == "3":
+            while True:
+                try:
+                    books_taken = int(input("Enter books taken:"))
+                    break
+                except ValueError:
+                    print("Please Enter an integer")
+
+            books_taken_names = []
+            for i in range(books_taken):
+                books = input(f"Enter the names  of books taken {i + 1}: ")
+                books = books.title()
+                if books not in a.books_names:
+                    print("Does not Exist in the Library ")
+                else:
+                    books_taken_names.append(books)
+
+            a.set_books_taken(books_taken, books_taken_names)
+
+        elif choice == "4":
+            while True:
+                try:
+                    days = int(input("Enter your days: "))
+                    break
+                except ValueError:
+                    print("Enter an integer")
+            a.set_days(days)
+
+        elif choice == "5":
+            while True:
+                try:
+                    returned_books = int(input(f"Enter books returned: "))
+                    break
+                except ValueError:
+                    print("Enter an integer")
+            books_returned = []
+            for i in range(returned_books):
+                books = input(f"Enter the names  of books returned {i + 1}: ")
+                books = books.title()
+                books_returned.append(books)
+            a.set_books_returned(books_returned)
+
+        elif choice == "6":
+            print("Thanks for using Library Management System")
+            break
+        else:
+            print("Please enter a valid choice")
